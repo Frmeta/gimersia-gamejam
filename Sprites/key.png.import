@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chpvovyarfnvf"
-path="res://.godot/imported/1_Mine_Tileset_1_16.png-e4a00b8a672dd8162784317634e48c6c.ctex"
+uid="uid://8wtegct2n7ma"
+path="res://.godot/imported/key.png-e3428cb941c2e23b78fee58c62a38a33.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/1_Mine_Tileset_1_16.png"
-dest_files=["res://.godot/imported/1_Mine_Tileset_1_16.png-e4a00b8a672dd8162784317634e48c6c.ctex"]
+source_file="res://Sprites/key.png"
+dest_files=["res://.godot/imported/key.png-e3428cb941c2e23b78fee58c62a38a33.ctex"]
 
 [params]
 

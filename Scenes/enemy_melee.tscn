@@ -1,27 +1,17 @@
-[gd_scene load_steps=18 format=3 uid="uid://dtix4eshagqh2"]
+[gd_scene load_steps=21 format=3 uid="uid://dtix4eshagqh2"]
 
-[ext_resource type="Texture2D" uid="uid://cp4mp1p47hiw" path="res://Sprites/Anim_Robot_Walk1_v1_16_spritesheet.png" id="1_3dfpd"]
+[ext_resource type="Texture2D" uid="uid://cp4mp1p47hiw" path="res://Sprites/melee_idle.png" id="1_3dfpd"]
 [ext_resource type="Script" uid="uid://hh0ysol3iu2r" path="res://Scripts/enemy_melee.gd" id="1_s1fu1"]
-[ext_resource type="Texture2D" uid="uid://c7hdob4883bxk" path="res://Sprites/Anim_Robot_Jump1_v1_16_spritesheet.png" id="2_s1fu1"]
+[ext_resource type="Shader" uid="uid://hquw3eqnd4mc" path="res://Shaders/solid.gdshader" id="2_b7o5j"]
+[ext_resource type="Texture2D" uid="uid://c7hdob4883bxk" path="res://Sprites/melee_jump.png" id="2_s1fu1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_84rqt"]
+shader = ExtResource("2_b7o5j")
+shader_parameter/is_tinted = 0
+shader_parameter/custom_tint = Color(1, 1, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3dfpd"]
-size = Vector2(12, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b7o5j"]
-atlas = ExtResource("1_3dfpd")
-region = Rect2(0, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_84rqt"]
-atlas = ExtResource("1_3dfpd")
-region = Rect2(16, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rc88t"]
-atlas = ExtResource("1_3dfpd")
-region = Rect2(0, 32, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qwgco"]
-atlas = ExtResource("1_3dfpd")
-region = Rect2(16, 32, 16, 32)
+size = Vector2(12, 12)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7suon"]
 atlas = ExtResource("2_s1fu1")
@@ -51,25 +41,24 @@ region = Rect2(32, 32, 16, 32)
 atlas = ExtResource("2_s1fu1")
 region = Rect2(0, 64, 16, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7o5j"]
+atlas = ExtResource("1_3dfpd")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84rqt"]
+atlas = ExtResource("1_3dfpd")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rc88t"]
+atlas = ExtResource("1_3dfpd")
+region = Rect2(0, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qwgco"]
+atlas = ExtResource("1_3dfpd")
+region = Rect2(16, 32, 16, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_vb0it"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b7o5j")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_84rqt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rc88t")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qwgco")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 8.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7suon")
@@ -95,28 +84,68 @@ animations = [{
 "loop": true,
 "name": &"jump",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b7o5j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_84rqt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rc88t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qwgco")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s1fu1"]
 size = Vector2(2, 7)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_b7o5j"]
+radius = 12.0
+
 [node name="Enemy Melee" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_s1fu1")
+health = 5
+shader = SubResource("ShaderMaterial_84rqt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 8)
+position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_3dfpd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_84rqt")
 sprite_frames = SubResource("SpriteFrames_vb0it")
-animation = &"idle"
-frame_progress = 0.49994734
+animation = &"walk"
+frame_progress = 0.8917204
 
 [node name="groundChecker" type="Area2D" parent="AnimatedSprite2D"]
-position = Vector2(15, 22)
+position = Vector2(8, 22)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/groundChecker"]
 position = Vector2(-1, -2)
 shape = SubResource("RectangleShape2D_s1fu1")
+
+[node name="wallChecker" type="Area2D" parent="AnimatedSprite2D"]
+position = Vector2(13, 10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/wallChecker"]
+position = Vector2(-1, -2)
+shape = SubResource("RectangleShape2D_s1fu1")
+
+[node name="atkArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="atkArea"]
+position = Vector2(0, 8)
+shape = SubResource("CircleShape2D_b7o5j")
+
+[connection signal="body_entered" from="atkArea" to="." method="_on_atk_area_body_entered"]

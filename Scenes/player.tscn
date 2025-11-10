@@ -1,12 +1,18 @@
-[gd_scene load_steps=25 format=3 uid="uid://d2bppxnj8p83u"]
+[gd_scene load_steps=27 format=3 uid="uid://d2bppxnj8p83u"]
 
 [ext_resource type="Script" uid="uid://v4krjc1lt13y" path="res://Scripts/player.gd" id="1_cvnsp"]
-[ext_resource type="Texture2D" uid="uid://cfis8ib4ehi37" path="res://Sprites/ROBO_WITHOUT HANDS.png" id="1_v0iea"]
+[ext_resource type="Texture2D" uid="uid://cfis8ib4ehi37" path="res://Sprites/player.png" id="1_v0iea"]
 [ext_resource type="PackedScene" uid="uid://bokakfo36r47c" path="res://Scenes/player_bullet.tscn" id="2_6t5aa"]
+[ext_resource type="Shader" uid="uid://hquw3eqnd4mc" path="res://Shaders/solid.gdshader" id="3_vgqql"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fkybt"]
+shader = ExtResource("3_vgqql")
+shader_parameter/is_tinted = 0
+shader_parameter/custom_tint = Color(1, 1, 1, 1)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
 radius = 6.0
-height = 16.0
+height = 12.15
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v0iea"]
 atlas = ExtResource("1_v0iea")
@@ -167,7 +173,7 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("parentSprite", "bodySprite", "gunSprite", "gunSpritePivot", "gunEndpoint")]
 collision_layer = 2
-collision_mask = 3
+collision_mask = 7
 script = ExtResource("1_cvnsp")
 speed = 150.0
 jump_velocity = -300.0
@@ -177,15 +183,17 @@ bodySprite = NodePath("sprites/body")
 gunSprite = NodePath("sprites/gunPivot/gun")
 gunSpritePivot = NodePath("sprites/gunPivot")
 gunEndpoint = NodePath("sprites/gunPivot/gun/gunEndpoint")
+health = 4
+shader = SubResource("ShaderMaterial_fkybt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 8)
+position = Vector2(0, 10)
 shape = SubResource("CapsuleShape2D_onrkg")
 
 [node name="sprites" type="Node2D" parent="."]
-scale = Vector2(-1, 1)
 
 [node name="body" type="AnimatedSprite2D" parent="sprites"]
+material = SubResource("ShaderMaterial_fkybt")
 sprite_frames = SubResource("SpriteFrames_1jxqw")
 animation = &"shoot"
 
@@ -193,6 +201,7 @@ animation = &"shoot"
 position = Vector2(0, 9)
 
 [node name="gun" type="AnimatedSprite2D" parent="sprites/gunPivot"]
+material = SubResource("ShaderMaterial_fkybt")
 position = Vector2(6, 0)
 sprite_frames = SubResource("SpriteFrames_h4iuc")
 

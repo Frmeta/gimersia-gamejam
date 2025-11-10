@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bokakfo36r47c"]
 
 [ext_resource type="Script" uid="uid://boslvowysmukl" path="res://Scripts/bullet.gd" id="1_3m2mg"]
-[ext_resource type="Texture2D" uid="uid://cfis8ib4ehi37" path="res://Sprites/ROBO_WITHOUT HANDS.png" id="1_bg8x2"]
+[ext_resource type="Texture2D" uid="uid://cfis8ib4ehi37" path="res://Sprites/player.png" id="1_bg8x2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3m2mg"]
 size = Vector2(8, 4)

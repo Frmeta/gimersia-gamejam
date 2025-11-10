@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bi11mh3xl6xo1"
-path="res://.godot/imported/Mine_Tileset_1B_16.png-d0bad1a25f3843af2df42eeae5dc88ae.ctex"
+uid="uid://cgrr2s1vpfu6x"
+path="res://.godot/imported/RedBar2.png-8095ab6c5f43833c77c1910f15a768a0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Mine_Tileset_1B_16.png"
-dest_files=["res://.godot/imported/Mine_Tileset_1B_16.png-d0bad1a25f3843af2df42eeae5dc88ae.ctex"]
+source_file="res://Sprites/RedBar/RedBar2.png"
+dest_files=["res://.godot/imported/RedBar2.png-8095ab6c5f43833c77c1910f15a768a0.ctex"]
 
 [params]
 

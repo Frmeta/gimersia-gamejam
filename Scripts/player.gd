@@ -1,4 +1,8 @@
-extends CharacterBody2D
+extends Entity
+
+class_name Player
+
+@export var healthbar: TextureRect
 
 # --- Variables ---
 @export var speed: float = 300.0
@@ -21,6 +25,7 @@ var shootTimer : float
 @export var gunEndpoint : Node2D
 
 
+
 var is_gun_facing_right = true
 var is_shooting = true
 var direction: float = 0
@@ -28,42 +33,54 @@ var direction: float = 0
 var gunPivotOriginalPos : Vector2 = Vector2.ZERO
 var gunKnockback: float = 1
 
+var coyote_jump_duration = 0.2
+var coyote_jump_timer = 0.0
+
+
 func _ready():
 	gunPivotOriginalPos = gunSpritePivot.position;
+	healthbar.set_value(health)
 
 func _physics_process(delta: float):
+	
+	coyote_jump_timer -= delta
+	
 	# --- Gravity ---
 	if not is_on_floor():
 		velocity.y += gravity * delta
-
-	# --- Jumping ---
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = jump_velocity
-		current_jump_count = 1
-	elif Input.is_action_just_pressed("jump") and current_jump_count < jump_count:
-		velocity.y = jump_velocity
-		current_jump_count -= 1
-
-	# --- Variable Jump Height ---
-	if Input.is_action_just_released("jump") and velocity.y < 0.0:
-		velocity.y *= jump_cut_multiplier
-
-	# --- Horizontal Movement ---
-	direction = Input.get_axis("left", "right")
-
-	# Apply movement based on the direction.
-	if direction:
-		# If there is input, set the velocity directly.
-		velocity.x = direction * speed
 	else:
-		# If there is no input, decelerate smoothly.
-		velocity.x = move_toward(velocity.x, 0, speed)
+		coyote_jump_timer = coyote_jump_duration
+	
+	if stun_timer < 0:
+		# --- Jumping ---
+		if Input.is_action_just_pressed("jump") and coyote_jump_timer > 0:
+			velocity.y = jump_velocity
+			current_jump_count = 1
+		elif Input.is_action_just_pressed("jump") and current_jump_count < jump_count:
+			velocity.y = jump_velocity
+			current_jump_count += 1
+
+		# --- Variable Jump Height ---
+		if Input.is_action_just_released("jump") and velocity.y < 0.0:
+			velocity.y *= jump_cut_multiplier
+
+		# --- Horizontal Movement ---
+		direction = Input.get_axis("left", "right")
+
+		# Apply movement based on the direction.
+		if direction:
+			# If there is input, set the velocity directly.
+			velocity.x = move_toward(velocity.x, direction * speed, speed)
+		else:
+			# If there is no input, decelerate smoothly.
+			velocity.x = move_toward(velocity.x, 0, speed)
 
 	# --- Apply Movement ---
 	move_and_slide()
 	
 
 func _process(delta):
+	super._process(delta)
 	var mouse_pos = get_global_mouse_position()
 	var diff = mouse_pos - position
 	
@@ -116,3 +133,15 @@ func _process(delta):
 	else:
 		bodySprite.play("idle") # idle
 		
+		
+		
+		
+		
+func take_damage(damage):
+	super(damage)
+	healthbar.set_value(health)
+
+
+
+func death():
+	queue_free()

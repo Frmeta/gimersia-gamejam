@@ -1,0 +1,87 @@
+[gd_scene load_steps=13 format=3 uid="uid://dv562mxeei2te"]
+
+[ext_resource type="Texture2D" uid="uid://lggbh0htpcvc" path="res://Sprites/ranged1/Idle.png" id="1_4mul5"]
+[ext_resource type="Texture2D" uid="uid://de88qnmskkike" path="res://Sprites/ranged1/Walk.png" id="2_4ybe8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lp40b"]
+atlas = ExtResource("1_4mul5")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p48ev"]
+atlas = ExtResource("1_4mul5")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ecuqf"]
+atlas = ExtResource("1_4mul5")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lu22x"]
+atlas = ExtResource("1_4mul5")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2tfcq"]
+atlas = ExtResource("2_4ybe8")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwsd6"]
+atlas = ExtResource("2_4ybe8")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u31ha"]
+atlas = ExtResource("2_4ybe8")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjgy1"]
+atlas = ExtResource("2_4ybe8")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xxjvd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lp40b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p48ev")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ecuqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lu22x")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2tfcq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pwsd6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u31ha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jjgy1")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_btqbn"]
+radius = 13.038404
+
+[node name="Ranged1" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xxjvd")
+animation = &"walk"
+frame = 2
+frame_progress = 0.2435574
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_btqbn")

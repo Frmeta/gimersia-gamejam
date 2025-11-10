@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cp4mp1p47hiw"
-path="res://.godot/imported/Anim_Robot_Walk1_v1_16_spritesheet.png-2de5cf2bc22926f471bf6454084e0aba.ctex"
+uid="uid://bmm1m7bvbuuiv"
+path="res://.godot/imported/Fire2.png-aeb7b9fa25e9c9fd4168335e0c5a7eb9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Anim_Robot_Walk1_v1_16_spritesheet.png"
-dest_files=["res://.godot/imported/Anim_Robot_Walk1_v1_16_spritesheet.png-2de5cf2bc22926f471bf6454084e0aba.ctex"]
+source_file="res://Sprites/ranged2/Fire2.png"
+dest_files=["res://.godot/imported/Fire2.png-aeb7b9fa25e9c9fd4168335e0c5a7eb9.ctex"]
 
 [params]
 
