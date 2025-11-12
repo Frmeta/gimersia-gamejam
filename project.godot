@@ -10,14 +10,16 @@ config_version=5
 
 [application]
 
-config/name="Gimersia Gamejam"
-run/main_scene="uid://c6uk8xcw0armk"
+config/name="Synthetica"
+run/main_scene="uid://8ryra3xf7t2j"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 MapPatternManager="*res://map_pattern.tscn"
+GameManager="*res://Scripts/game_manager.gd"
+AudioManager="*res://Scenes/audio_manager.tscn"
 
 [display]
 
@@ -26,6 +28,11 @@ window/size/viewport_height=256
 window/size/window_width_override=1000
 window/size/window_height_override=1000
 window/stretch/mode="viewport"
+
+[global_group]
+
+environment=""
+player=""
 
 [input]
 

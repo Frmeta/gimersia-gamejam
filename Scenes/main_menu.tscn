@@ -1,0 +1,107 @@
+[gd_scene load_steps=14 format=4 uid="uid://8ryra3xf7t2j"]
+
+[ext_resource type="Script" uid="uid://djf8hxygk1bfe" path="res://Scenes/main_menu.gd" id="1_1ehe0"]
+[ext_resource type="TileSet" uid="uid://cpdfjpv4mifxg" path="res://Tileset/terrain_tileset.tres" id="1_28flt"]
+[ext_resource type="FontFile" uid="uid://omrspxr7relv" path="res://Silver.ttf" id="2_48xlc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1ehe0"]
+font = ExtResource("2_48xlc")
+font_size = 38
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ce3w2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1ehe0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n45e2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_opfnp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cp0ys"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yhxw7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_trj04"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_16hvj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vr1f0"]
+
+[node name="Main Menu" type="Node2D"]
+script = ExtResource("1_1ehe0")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -113.0
+offset_top = -60.0
+offset_right = 403.0
+offset_bottom = 314.0
+color = Color(0.06469653, 0.06469653, 0.06469653, 1)
+
+[node name="Environment" type="TileMapLayer" parent="." groups=["environment"]]
+tile_map_data = PackedByteArray("AAAAAA8AAAABAAIAAAABAA8AAAABAAIAAAACAA8AAAABAAIAAAADAA8AAAABAAIAAAAEAA8AAAABAAIAAAAFAA8AAAABAAIAAAAGAA8AAAABAAIAAAAHAA8AAAABAAIAAAAIAA8AAAABAAIAAAAJAA8AAAABAAIAAAAKAA8AAAABAAIAAAALAA8AAAABAAIAAAAMAA8AAAABAAIAAAANAA8AAAABAAIAAAAOAA8AAAABAAIAAAAPAA8AAAABAAIAAAAQAA8AAAABAAIAAAAQABAAAAABAAIAAAAPABAAAAABAAIAAAAOABAAAAABAAIAAAANABAAAAABAAIAAAAMABAAAAABAAIAAAALABAAAAABAAIAAAAKABAAAAABAAIAAAAJABAAAAABAAIAAAAIABAAAAABAAIAAAAHABAAAAABAAIAAAAGABAAAAABAAIAAAAFABAAAAABAAIAAAAEABAAAAABAAIAAAADABAAAAABAAIAAAACABAAAAABAAIAAAABABAAAAABAAIAAAAAABAAAAABAAIAAAD//xAAAAABAAIAAAD+/xAAAAAAAAIAAAASABIAAAACAAMAAAASABEAAAACAAIAAAASABAAAAACAAIAAAASAA8AAAACAAIAAAASAA4AAAACAAIAAAASAA0AAAACAAIAAAARABIAAAABAAMAAAARABEAAAABAAIAAAARABAAAAABAAIAAAARAA8AAAABAAIAAAARAA4AAAABAAIAAAARAA0AAAABAAIAAAAQABIAAAABAAMAAAAQABEAAAABAAIAAAAQAA4AAAABAAIAAAAQAA0AAAABAAIAAAAPABIAAAABAAMAAAAPABEAAAABAAIAAAAPAA4AAAABAAIAAAAPAA0AAAABAAIAAAAOABIAAAABAAMAAAAOABEAAAABAAIAAAAOAA4AAAABAAIAAAAOAA0AAAABAAIAAAANABIAAAABAAMAAAANABEAAAABAAIAAAANAA4AAAABAAIAAAANAA0AAAABAAIAAAAMABIAAAABAAMAAAAMABEAAAABAAIAAAAMAA4AAAABAAIAAAAMAA0AAAABAAIAAAALABIAAAABAAMAAAALABEAAAABAAIAAAALAA4AAAABAAIAAAALAA0AAAABAAIAAAAKABIAAAABAAMAAAAKABEAAAABAAIAAAAKAA4AAAABAAIAAAAKAA0AAAABAAIAAAAJABIAAAABAAMAAAAJABEAAAABAAIAAAAJAA4AAAABAAIAAAAJAA0AAAABAAIAAAAIABIAAAABAAMAAAAIABEAAAABAAIAAAAIAA4AAAABAAIAAAAIAA0AAAABAAIAAAAHABIAAAABAAMAAAAHABEAAAABAAIAAAAHAA4AAAABAAIAAAAHAA0AAAABAAIAAAAGABIAAAABAAMAAAAGABEAAAABAAIAAAAGAA4AAAABAAIAAAAGAA0AAAABAAEAAAAFABIAAAABAAMAAAAFABEAAAABAAIAAAAFAA4AAAABAAIAAAAFAA0AAAABAAEAAAAEABIAAAABAAMAAAAEABEAAAABAAIAAAAEAA4AAAABAAIAAAAEAA0AAAABAAEAAAADABIAAAABAAMAAAADABEAAAABAAIAAAADAA4AAAABAAIAAAADAA0AAAABAAEAAAACABIAAAABAAMAAAACABEAAAABAAIAAAACAA4AAAABAAIAAAACAA0AAAABAAEAAAABABIAAAABAAMAAAABABEAAAABAAIAAAABAA4AAAABAAIAAAABAA0AAAABAAEAAAAAABIAAAABAAMAAAAAABEAAAABAAIAAAAAAA4AAAABAAIAAAAAAA0AAAABAAEAAAD//xIAAAABAAMAAAD//xEAAAABAAIAAAD//w8AAAABAAIAAAD//w4AAAABAAIAAAD//w0AAAABAAEAAAD+/xIAAAAAAAMAAAD+/xEAAAAAAAIAAAD+/w8AAAAAAAIAAAD+/w4AAAAAAAIAAAD+/w0AAAAAAAEAAAASAAwAAAACAAEAAAARAAwAAAABAAEAAAAQAAwAAAABAAEAAAAPAAwAAAABAAEAAAAOAAwAAAABAAEAAAANAAwAAAABAAIAAAAMAAwAAAABAAIAAAALAAwAAAABAAIAAAAKAAwAAAABAAIAAAAJAAwAAAABAAIAAAAIAAwAAAABAAEAAAAHAAwAAAAAAAEAAAANAAsAAAACAAEAAAAMAAsAAAABAAEAAAALAAsAAAABAAEAAAAKAAsAAAABAAEAAAAJAAsAAAAAAAEAAAA=")
+tile_set = ExtResource("1_28flt")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -1.0
+offset_top = 63.0
+offset_right = -1.0
+offset_bottom = 105.0
+grow_horizontal = 2
+text = "Synthetica "
+label_settings = SubResource("LabelSettings_1ehe0")
+horizontal_alignment = 1
+
+[node name="PlayButton" type="Button" parent="CanvasLayer"]
+offset_left = 86.0
+offset_top = 122.0
+offset_right = 153.0
+offset_bottom = 156.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ce3w2")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_1ehe0")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_n45e2")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_opfnp")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cp0ys")
+
+[node name="Play" type="Label" parent="CanvasLayer/PlayButton"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 6.0
+offset_top = 1.0
+offset_right = 6.0
+offset_bottom = 43.0
+grow_horizontal = 2
+text = "Play"
+label_settings = SubResource("LabelSettings_1ehe0")
+horizontal_alignment = 1
+
+[node name="Quit Button" type="Button" parent="CanvasLayer"]
+offset_left = 89.0
+offset_top = 179.0
+offset_right = 156.0
+offset_bottom = 213.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ce3w2")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_yhxw7")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_trj04")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_16hvj")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vr1f0")
+
+[node name="Quit" type="Label" parent="CanvasLayer/Quit Button"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 2.0
+offset_bottom = 89.0
+grow_horizontal = 2
+text = "Exit
+"
+label_settings = SubResource("LabelSettings_1ehe0")
+horizontal_alignment = 1
+
+[connection signal="pressed" from="CanvasLayer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Quit Button" to="." method="_on_play_button_2_pressed"]

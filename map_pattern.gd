@@ -18,6 +18,8 @@ var up_wall_t : Array[TileMapLayer]
 var interior_hole_up_t : Array[TileMapLayer]
 var interior_wall_up_t : Array[TileMapLayer]
 
+@export var door_t : TileMapLayer
+
 func _ready():
 	up_corners_t = get_children_of_type(up_corners)
 	down_corners_t = get_children_of_type(down_corners)
@@ -27,14 +29,17 @@ func _ready():
 	up_wall_t = get_children_of_type(up_wall)
 	interior_hole_up_t = get_children_of_type(interior_hole_up)
 	interior_wall_up_t = get_children_of_type(interior_wall_up)
+	
+	position = Vector2(100000, 100000) # supaya ga ganggu map
 
-func generate_map(wall_dirs : Array[MapGenerator.Direction]):
+func generate_room(wall_dirs : Array[MapGenerator.Direction], is_door : bool = false):
 	var output := []
 	
 	output.append_array(up_corners_t.pick_random().get_used_cells())
 	output.append_array(down_corners_t.pick_random().get_used_cells())
 	
 	var wall_up_exists = false
+	
 	for wall_dir in wall_dirs:
 		if wall_dir == MapGenerator.Direction.LEFT:
 			output.append_array(left_wall_t.pick_random().get_used_cells())
@@ -45,15 +50,17 @@ func generate_map(wall_dirs : Array[MapGenerator.Direction]):
 		if wall_dir == MapGenerator.Direction.UP:
 			output.append_array(up_wall_t.pick_random().get_used_cells())
 			wall_up_exists = true
-			
-	if wall_up_exists:
-		if randf() < 1: # TODO: set it to like 0.8 or something
-			output.append_array(interior_wall_up_t.pick_random().get_used_cells())
-	else:
+	
+	
+	if is_door:
+		output.append_array(door_t.get_used_cells())
+	elif not wall_up_exists:
 		output.append_array(interior_hole_up_t.pick_random().get_used_cells())
+	elif randf() < 1: # TODO: set it to like 0.8 or something
+		output.append_array(interior_wall_up_t.pick_random().get_used_cells())
+	
 		
 	return output
-	
 	
 func get_children_of_type(parent_node: Node) -> Array[TileMapLayer]:
 	var children_of_type : Array[TileMapLayer] = []

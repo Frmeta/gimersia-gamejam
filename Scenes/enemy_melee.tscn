@@ -1,17 +1,19 @@
-[gd_scene load_steps=21 format=3 uid="uid://dtix4eshagqh2"]
+[gd_scene load_steps=23 format=3 uid="uid://dtix4eshagqh2"]
 
 [ext_resource type="Texture2D" uid="uid://cp4mp1p47hiw" path="res://Sprites/melee_idle.png" id="1_3dfpd"]
 [ext_resource type="Script" uid="uid://hh0ysol3iu2r" path="res://Scripts/enemy_melee.gd" id="1_s1fu1"]
 [ext_resource type="Shader" uid="uid://hquw3eqnd4mc" path="res://Shaders/solid.gdshader" id="2_b7o5j"]
 [ext_resource type="Texture2D" uid="uid://c7hdob4883bxk" path="res://Sprites/melee_jump.png" id="2_s1fu1"]
+[ext_resource type="PackedScene" uid="uid://cc387rvcfabf0" path="res://Scenes/explosion.tscn" id="3_84rqt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_84rqt"]
+resource_local_to_scene = true
 shader = ExtResource("2_b7o5j")
 shader_parameter/is_tinted = 0
 shader_parameter/custom_tint = Color(1, 1, 1, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3dfpd"]
-size = Vector2(12, 12)
+[sub_resource type="CircleShape2D" id="CircleShape2D_rc88t"]
+radius = 6.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7suon"]
 atlas = ExtResource("2_s1fu1")
@@ -81,9 +83,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xfs4o")
 }],
-"loop": true,
+"loop": false,
 "name": &"jump",
-"speed": 10.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -106,25 +108,31 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s1fu1"]
 size = Vector2(2, 7)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_84rqt"]
+radius = 34.26
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_b7o5j"]
 radius = 12.0
 
-[node name="Enemy Melee" type="CharacterBody2D"]
+[node name="Enemy Melee" type="CharacterBody2D" node_paths=PackedStringArray("sprites")]
 collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_s1fu1")
 health = 5
 shader = SubResource("ShaderMaterial_84rqt")
+sprites = [NodePath("AnimatedSprite2D")]
+explosion = ExtResource("3_84rqt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 10)
-shape = SubResource("RectangleShape2D_3dfpd")
+position = Vector2(1, 10)
+shape = SubResource("CircleShape2D_rc88t")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_84rqt")
 sprite_frames = SubResource("SpriteFrames_vb0it")
-animation = &"walk"
-frame_progress = 0.8917204
+animation = &"jump"
+frame = 6
+frame_progress = 1.0
 
 [node name="groundChecker" type="Area2D" parent="AnimatedSprite2D"]
 position = Vector2(8, 22)
@@ -139,6 +147,15 @@ position = Vector2(13, 10)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/wallChecker"]
 position = Vector2(-1, -2)
 shape = SubResource("RectangleShape2D_s1fu1")
+
+[node name="playerchecker" type="Area2D" parent="AnimatedSprite2D"]
+position = Vector2(61, 0)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/playerchecker"]
+position = Vector2(-13, 8)
+shape = SubResource("CircleShape2D_84rqt")
 
 [node name="atkArea" type="Area2D" parent="."]
 collision_layer = 0

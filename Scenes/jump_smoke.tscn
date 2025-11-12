@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://bijdbe7cvyg74"]
+
+[ext_resource type="Script" uid="uid://cckcsn2confpa" path="res://Scenes/destroy.gd" id="1_h5x6a"]
+[ext_resource type="Texture2D" uid="uid://cv15nhnq0gh6e" path="res://Sprites/jumpSmoke.png" id="1_ybcnv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3fcy"]
+atlas = ExtResource("1_ybcnv")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vck22"]
+atlas = ExtResource("1_ybcnv")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3g2j"]
+atlas = ExtResource("1_ybcnv")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_px7t6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3fcy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vck22")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k3g2j")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 15.0
+}]
+
+[node name="Jump Smoke" type="Node2D"]
+script = ExtResource("1_h5x6a")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_px7t6")
+animation = &"idle"
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

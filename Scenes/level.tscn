@@ -1,0 +1,141 @@
+[gd_scene load_steps=23 format=3 uid="uid://c6uk8xcw0armk"]
+
+[ext_resource type="PackedScene" uid="uid://d2bppxnj8p83u" path="res://Scenes/player.tscn" id="2_cpqui"]
+[ext_resource type="PackedScene" uid="uid://dtix4eshagqh2" path="res://Scenes/enemy_melee.tscn" id="3_abuyh"]
+[ext_resource type="PackedScene" uid="uid://dwp4g2v6vji76" path="res://Scenes/portal.tscn" id="3_ffu6o"]
+[ext_resource type="TileSet" uid="uid://cpdfjpv4mifxg" path="res://Tileset/terrain_tileset.tres" id="3_oum08"]
+[ext_resource type="Script" uid="uid://600xfv83qm6h" path="res://Scripts/nav_region.gd" id="4_5txge"]
+[ext_resource type="Script" uid="uid://djj7ft51sf8me" path="res://Scripts/map_generator.gd" id="4_abuyh"]
+[ext_resource type="Texture2D" uid="uid://34r7gj8dbniq" path="res://Sprites/player icon.png" id="6_oa7b0"]
+[ext_resource type="Script" uid="uid://dl7hk5fmhldq1" path="res://Scripts/health_bar.gd" id="7_btn2y"]
+[ext_resource type="Texture2D" uid="uid://cgd42oj1vhdnr" path="res://Sprites/BlueBar/BlueBar4.png" id="7_fhyaa"]
+[ext_resource type="Texture2D" uid="uid://3eh7odc1w4j4" path="res://Sprites/BlueBar/BlueBar0.png" id="8_glela"]
+[ext_resource type="Shader" uid="uid://hquw3eqnd4mc" path="res://Shaders/solid.gdshader" id="8_vofx3"]
+[ext_resource type="Texture2D" uid="uid://baf1cbqky6adj" path="res://Sprites/border.png" id="9_00k4y"]
+[ext_resource type="Texture2D" uid="uid://bnjdbjgnoup38" path="res://Sprites/BlueBar/BlueBar1.png" id="9_ffu6o"]
+[ext_resource type="Texture2D" uid="uid://dyuxlyi6qymsn" path="res://Sprites/BlueBar/BlueBar2.png" id="10_kl8tt"]
+[ext_resource type="Texture2D" uid="uid://c2myy53xtbljl" path="res://Sprites/BlueBar/BlueBar3.png" id="11_5txge"]
+[ext_resource type="PackedScene" uid="uid://dv562mxeei2te" path="res://Scenes/enemy_ranged_1.tscn" id="15_kl8tt"]
+[ext_resource type="FontFile" uid="uid://omrspxr7relv" path="res://Silver.ttf" id="16_00k4y"]
+[ext_resource type="PackedScene" uid="uid://cc387rvcfabf0" path="res://Scenes/explosion.tscn" id="17_ad76w"]
+[ext_resource type="Script" uid="uid://i1w4dyvrvjj2" path="res://Scenes/camera_2d.gd" id="17_nngtn"]
+[ext_resource type="Script" uid="uid://dqx10f8oppa3p" path="res://Scenes/cam_shake.gd" id="19_3a44l"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_kl8tt"]
+vertices = PackedVector2Array(24044.672, 12952.102, -15969.703, 13648.883, 165, 21, 17475.25, -14219.203, 139, 21, 117, 21, 69, 37, 165, -5, -10843.844, -8843.703, 139, -5, 117, -5, 59, -5, 43, 11, 59, 11, 43, 37, 69, 21)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 2, 1), PackedInt32Array(5, 4, 1, 6), PackedInt32Array(3, 2, 7), PackedInt32Array(8, 3, 7, 9), PackedInt32Array(9, 4, 5, 10), PackedInt32Array(8, 9, 10), PackedInt32Array(8, 10, 11), PackedInt32Array(1, 8, 11, 12), PackedInt32Array(11, 13, 12), PackedInt32Array(1, 12, 14), PackedInt32Array(6, 15, 5), PackedInt32Array(1, 14, 6)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-10848, -8848, -15976, 13654, 24051, 12957, 17479, -14225)])
+source_geometry_mode = 1
+source_geometry_group_name = &"environment"
+agent_radius = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3a44l"]
+resource_local_to_scene = true
+shader = ExtResource("8_vofx3")
+shader_parameter/is_tinted = 0
+shader_parameter/custom_tint = Color(1, 1, 1, 1)
+
+[node name="Level" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -2
+offset_left = -1000053.0
+offset_top = -1000182.0
+offset_right = 8999946.0
+offset_bottom = 8999817.0
+color = Color(0.029147793, 0.029147537, 0.032985747, 1)
+
+[node name="MapGenerator" type="Node2D" parent="." node_paths=PackedStringArray("tileMapLayer", "navigation_region", "area_label")]
+unique_name_in_owner = true
+script = ExtResource("4_abuyh")
+tileMapLayer = NodePath("../NavigationRegion2D/Environment")
+portal_scene = ExtResource("3_ffu6o")
+navigation_region = NodePath("../NavigationRegion2D")
+enemy_melee = ExtResource("3_abuyh")
+enemy_ranged_1 = ExtResource("15_kl8tt")
+area_label = NodePath("../CanvasLayer/Area 1")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_kl8tt")
+script = ExtResource("4_5txge")
+
+[node name="Environment" type="TileMapLayer" parent="NavigationRegion2D" groups=["environment"]]
+tile_map_data = PackedByteArray(0, 0, 3, 0, 1, 0, 0, 0, 3, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0)
+tile_set = ExtResource("3_oum08")
+
+[node name="Player" parent="." node_paths=PackedStringArray("healthbar") instance=ExtResource("2_cpqui")]
+position = Vector2(105, 84)
+healthbar = NodePath("../CanvasLayer/HealthBar")
+shader = SubResource("ShaderMaterial_3a44l")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+offset_right = 256.0
+offset_bottom = 256.0
+texture = ExtResource("9_00k4y")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+custom_minimum_size = Vector2(0, 40)
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer"]
+visible = false
+custom_minimum_size = Vector2(0, 40)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 1)
+
+[node name="HealthBar" type="TextureRect" parent="CanvasLayer"]
+offset_left = 29.0
+offset_top = 13.0
+offset_right = 62.0
+offset_bottom = 29.0
+scale = Vector2(2, 2)
+texture = ExtResource("7_fhyaa")
+script = ExtResource("7_btn2y")
+textures = Array[Texture]([ExtResource("8_glela"), ExtResource("9_ffu6o"), ExtResource("10_kl8tt"), ExtResource("11_5txge"), ExtResource("7_fhyaa")])
+
+[node name="PlayerIcon" type="TextureRect" parent="CanvasLayer"]
+offset_left = 7.0
+offset_top = 9.0
+offset_right = 47.0
+offset_bottom = 49.0
+texture = ExtResource("6_oa7b0")
+flip_h = true
+
+[node name="Area 1" type="Label" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -89.0
+offset_top = 27.0
+offset_right = -9.0
+offset_bottom = 69.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("16_00k4y")
+theme_override_font_sizes/font_size = 20
+text = "AREA 2"
+horizontal_alignment = 2
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="explosion" parent="." instance=ExtResource("17_ad76w")]
+position = Vector2(95, -15)
+
+[node name="Cam Shake" type="Node2D" parent="."]
+script = ExtResource("19_3a44l")
+
+[node name="Camera2D" type="Camera2D" parent="Cam Shake" node_paths=PackedStringArray("target_node")]
+script = ExtResource("17_nngtn")
+target_node = NodePath("../../Player")
+
+[connection signal="changed" from="NavigationRegion2D/Environment" to="NavigationRegion2D" method="_on_tile_map_layer_changed"]

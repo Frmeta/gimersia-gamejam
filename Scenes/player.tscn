@@ -1,11 +1,14 @@
-[gd_scene load_steps=27 format=3 uid="uid://d2bppxnj8p83u"]
+[gd_scene load_steps=29 format=3 uid="uid://d2bppxnj8p83u"]
 
 [ext_resource type="Script" uid="uid://v4krjc1lt13y" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://cfis8ib4ehi37" path="res://Sprites/player.png" id="1_v0iea"]
 [ext_resource type="PackedScene" uid="uid://bokakfo36r47c" path="res://Scenes/player_bullet.tscn" id="2_6t5aa"]
 [ext_resource type="Shader" uid="uid://hquw3eqnd4mc" path="res://Shaders/solid.gdshader" id="3_vgqql"]
+[ext_resource type="PackedScene" uid="uid://bijdbe7cvyg74" path="res://Scenes/jump_smoke.tscn" id="3_x3wgy"]
+[ext_resource type="PackedScene" uid="uid://cc387rvcfabf0" path="res://Scenes/explosion.tscn" id="4_fkybt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fkybt"]
+resource_local_to_scene = true
 shader = ExtResource("3_vgqql")
 shader_parameter/is_tinted = 0
 shader_parameter/custom_tint = Color(1, 1, 1, 1)
@@ -171,7 +174,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("parentSprite", "bodySprite", "gunSprite", "gunSpritePivot", "gunEndpoint")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("parentSprite", "bodySprite", "gunSprite", "gunSpritePivot", "gunEndpoint", "sprites") groups=["player"]]
+z_index = 2
 collision_layer = 2
 collision_mask = 7
 script = ExtResource("1_cvnsp")
@@ -183,8 +187,11 @@ bodySprite = NodePath("sprites/body")
 gunSprite = NodePath("sprites/gunPivot/gun")
 gunSpritePivot = NodePath("sprites/gunPivot")
 gunEndpoint = NodePath("sprites/gunPivot/gun/gunEndpoint")
+jump_smoke = ExtResource("3_x3wgy")
 health = 4
 shader = SubResource("ShaderMaterial_fkybt")
+sprites = [NodePath("sprites/body"), NodePath("sprites/gunPivot/gun")]
+explosion = ExtResource("4_fkybt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 10)
