@@ -146,7 +146,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"atk",
-"speed": 12.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -163,7 +163,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"dash",
-"speed": 12.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -206,7 +206,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"jump",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -226,7 +226,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 12.0
+"speed": 15.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_03s48"]
@@ -253,7 +253,7 @@ shape = SubResource("RectangleShape2D_b5h4d")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-6, 5)
 sprite_frames = SubResource("SpriteFrames_q5qqr")
-animation = &"jump"
+animation = &"atk"
 
 [node name="atkSensor" type="Area2D" parent="AnimatedSprite2D"]
 position = Vector2(-18, -6)

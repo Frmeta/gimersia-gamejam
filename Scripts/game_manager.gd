@@ -11,8 +11,11 @@ var cam_shake
 var save_path = "user://game_save.dat"
 	
 func _process(_delta):
-	#if Input.is_key_pressed(KEY_R):
+	if Input.is_key_pressed(KEY_R) and Input.is_key_pressed(KEY_E) and Input.is_key_pressed(KEY_D):
 		#get_tree().reload_current_scene()
+		farthest_level = 6
+		print("cheat")
+		save_level()
 	pass
 	
 	

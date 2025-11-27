@@ -1,6 +1,6 @@
 [gd_scene load_steps=31 format=3 uid="uid://bmaxnvn60vv1t"]
 
-[ext_resource type="Script" uid="uid://cckcsn2confpa" path="res://Scenes/destroy.gd" id="1_1p1ka"]
+[ext_resource type="Script" uid="uid://cckcsn2confpa" path="res://Scripts/destroy.gd" id="1_1p1ka"]
 [ext_resource type="Texture2D" uid="uid://bbmojwlhcxw2p" path="res://Sprites/Boss1.png" id="3_gaesq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_55dc4"]

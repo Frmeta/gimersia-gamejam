@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=4 uid="uid://bao2nn53ibbyp"]
 
-[ext_resource type="Script" uid="uid://cbhgbo5vr4038" path="res://map_pattern.gd" id="1_5fg35"]
+[ext_resource type="Script" uid="uid://cbhgbo5vr4038" path="res://Scripts/map_pattern.gd" id="1_5fg35"]
 [ext_resource type="TileSet" uid="uid://cpdfjpv4mifxg" path="res://Tileset/terrain_tileset.tres" id="1_t0skd"]
 
 [node name="Map Pattern" type="Node2D" node_paths=PackedStringArray("up_corners", "down_corners", "left_wall", "right_wall", "down_wall", "up_wall", "interior_hole_up", "interior_wall_up", "door_t")]

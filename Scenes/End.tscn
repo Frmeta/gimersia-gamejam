@@ -1,7 +1,7 @@
 [gd_scene load_steps=56 format=4 uid="uid://d2g8srxljrr7k"]
 
 [ext_resource type="TileSet" uid="uid://cpdfjpv4mifxg" path="res://Tileset/terrain_tileset.tres" id="1_vbw3r"]
-[ext_resource type="Script" uid="uid://c6xq23jyof6mg" path="res://Scenes/end.gd" id="1_xoww8"]
+[ext_resource type="Script" uid="uid://c6xq23jyof6mg" path="res://Scripts/end.gd" id="1_xoww8"]
 [ext_resource type="Shader" uid="uid://hquw3eqnd4mc" path="res://Shaders/solid.gdshader" id="2_xoww8"]
 [ext_resource type="Texture2D" uid="uid://c7hdob4883bxk" path="res://Sprites/melee_jump.png" id="3_d1g0i"]
 [ext_resource type="Texture2D" uid="uid://cp4mp1p47hiw" path="res://Sprites/melee_idle.png" id="4_whs21"]

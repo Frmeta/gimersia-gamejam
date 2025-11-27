@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://ddpabb8vtnife"]
 
-[ext_resource type="Script" uid="uid://cckcsn2confpa" path="res://Scenes/destroy.gd" id="1_41k3d"]
+[ext_resource type="Script" uid="uid://cckcsn2confpa" path="res://Scripts/destroy.gd" id="1_41k3d"]
 [ext_resource type="Texture2D" uid="uid://mdui6pu3enyn" path="res://Sprites/playerLandSmoke.png" id="2_xdury"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sowpf"]

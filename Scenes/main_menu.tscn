@@ -1,6 +1,6 @@
 [gd_scene load_steps=68 format=4 uid="uid://8ryra3xf7t2j"]
 
-[ext_resource type="Script" uid="uid://djf8hxygk1bfe" path="res://Scenes/main_menu.gd" id="1_1ehe0"]
+[ext_resource type="Script" uid="uid://djf8hxygk1bfe" path="res://Scripts/main_menu.gd" id="1_1ehe0"]
 [ext_resource type="TileSet" uid="uid://cpdfjpv4mifxg" path="res://Tileset/terrain_tileset.tres" id="1_28flt"]
 [ext_resource type="FontFile" uid="uid://omrspxr7relv" path="res://Silver.ttf" id="2_48xlc"]
 [ext_resource type="Shader" uid="uid://hquw3eqnd4mc" path="res://Shaders/solid.gdshader" id="3_trj04"]
@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://de88qnmskkike" path="res://Sprites/ranged1/Walk.png" id="7_5egv6"]
 [ext_resource type="Texture2D" uid="uid://cfis8ib4ehi37" path="res://Sprites/player.png" id="8_vtepg"]
 [ext_resource type="Texture2D" uid="uid://coi54cksptws7" path="res://Sprites/title.png" id="10_16hvj"]
-[ext_resource type="Script" uid="uid://c75gpme6r2s1r" path="res://Scenes/start_anim.gd" id="11_vr1f0"]
+[ext_resource type="Script" uid="uid://c75gpme6r2s1r" path="res://Scripts/start_anim.gd" id="11_vr1f0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8dnnj"]
 resource_local_to_scene = true

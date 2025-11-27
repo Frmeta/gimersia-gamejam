@@ -1,6 +1,6 @@
 [gd_scene load_steps=34 format=3 uid="uid://c6uk8xcw0armk"]
 
-[ext_resource type="Script" uid="uid://dneksk5su1wab" path="res://Scenes/pause.gd" id="1_luodc"]
+[ext_resource type="Script" uid="uid://dneksk5su1wab" path="res://Scripts/pause.gd" id="1_luodc"]
 [ext_resource type="PackedScene" uid="uid://d2bppxnj8p83u" path="res://Scenes/player.tscn" id="2_cpqui"]
 [ext_resource type="PackedScene" uid="uid://dtix4eshagqh2" path="res://Scenes/enemy_melee.tscn" id="3_abuyh"]
 [ext_resource type="PackedScene" uid="uid://dwp4g2v6vji76" path="res://Scenes/portal.tscn" id="3_ffu6o"]
@@ -19,8 +19,8 @@
 [ext_resource type="Texture2D" uid="uid://c2myy53xtbljl" path="res://Sprites/BlueBar/BlueBar3.png" id="11_5txge"]
 [ext_resource type="PackedScene" uid="uid://dv562mxeei2te" path="res://Scenes/enemy_ranged_1.tscn" id="15_kl8tt"]
 [ext_resource type="FontFile" uid="uid://omrspxr7relv" path="res://Silver.ttf" id="16_00k4y"]
-[ext_resource type="Script" uid="uid://i1w4dyvrvjj2" path="res://Scenes/camera_2d.gd" id="17_nngtn"]
-[ext_resource type="Script" uid="uid://dqx10f8oppa3p" path="res://Scenes/cam_shake.gd" id="19_3a44l"]
+[ext_resource type="Script" uid="uid://i1w4dyvrvjj2" path="res://Scripts/camera_2d.gd" id="17_nngtn"]
+[ext_resource type="Script" uid="uid://dqx10f8oppa3p" path="res://Scripts/cam_shake.gd" id="19_3a44l"]
 [ext_resource type="PackedScene" uid="uid://dmpcp3lbx5rip" path="res://Scenes/wasd_tutorial.tscn" id="20_3a44l"]
 [ext_resource type="PackedScene" uid="uid://bx4sv4522xje8" path="res://Scenes/lmb_tutorial.tscn" id="21_0cmrb"]
 [ext_resource type="PackedScene" uid="uid://d2fhe24pn6nty" path="res://Scenes/awakened_enemy_ranged_1.tscn" id="21_pnhnk"]

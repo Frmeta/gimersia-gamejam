@@ -4,10 +4,10 @@ enum State {
 	IDLE, WALK, DASH, JUMP, ATK
 }
 
-var jump_power = Vector2(1000, -400)
-var dash_power = Vector2(250, 0)
-var atk_power = Vector2(70, 0)
-var walk_speed = 50.0
+var jump_power = Vector2(800, -400)
+var dash_power = Vector2(200, 0)
+var atk_power = Vector2(120, 0)
+var walk_speed = 100.0
 
 @export var bullet : PackedScene
 
@@ -63,17 +63,17 @@ func _physics_process(delta):
 		
 		
 	# animation
-	match state:
-		State.IDLE:
-			$AnimatedSprite2D.play("idle")
-		State.WALK:
-			$AnimatedSprite2D.play("walk")
-		State.ATK:
-			$AnimatedSprite2D.play("atk")
-		State.DASH:
-			$AnimatedSprite2D.play("dash")
-		State.JUMP:
-			$AnimatedSprite2D.play("jump")
+	#match state:
+		#State.IDLE:
+			#$AnimatedSprite2D.play("idle")
+		#State.WALK:
+			#$AnimatedSprite2D.play("walk")
+		#State.ATK:
+			#$AnimatedSprite2D.play("atk")
+		#State.DASH:
+			#$AnimatedSprite2D.play("dash")
+		#State.JUMP:
+			#$AnimatedSprite2D.play("jump")
 	
 	if state == State.WALK or state == State.ATK:
 		# atk player
@@ -120,30 +120,27 @@ func _physics_process(delta):
 		
 
 func dash():
-	print("dash")
 	state = State.DASH
 	GameManager.cam_shake_call()
 	AudioManager.play_sfx("res://audio/bossDash.wav")
+	global_position.x += $AnimatedSprite2D.scale.x * 20
 	velocity = Vector2(dash_power.x * $AnimatedSprite2D.scale.x, dash_power.y)
 	$AnimatedSprite2D.play("dash")
 	await $AnimatedSprite2D.animation_finished
 	
-	$AnimatedSprite2D.play("walk")
 	state = State.WALK
-	print("walk")
+	$AnimatedSprite2D.play("walk")
 	
 
 func atk():
-	print("atk")
 	state = State.ATK
-	$AnimatedSprite2D.play("atk")
 	GameManager.cam_shake_call()
 	AudioManager.play_sfx("res://audio/boss2slice.wav")
 	velocity = Vector2(atk_power.x * $AnimatedSprite2D.scale.x, atk_power.y)
+	$AnimatedSprite2D.play("atk")
 	await $AnimatedSprite2D.animation_finished
 	$AnimatedSprite2D.play("walk")
 	state = State.WALK
-	print("walk")
 
 
 func jump():
@@ -152,11 +149,14 @@ func jump():
 	velocity = Vector2(jump_power.x * $AnimatedSprite2D.scale.x, jump_power.y)
 	global_position.y -= 0.2
 	AudioManager.play_sfx("res://audio/enemyMeleeJump.wav")
+	$AnimatedSprite2D.play("jump")
 	
 	#for i in range(2):
-		#await get_tree().physics_frame
+	if get_tree() != null:
+		await get_tree().physics_frame
 	while not is_on_floor():
-		await get_tree().physics_frame # Await the next physics frame
+		if get_tree() != null:
+			await get_tree().physics_frame # Await the next physics frame
 	
 	
 	AudioManager.play_sfx("res://audio/bossLand.wav")
@@ -164,7 +164,6 @@ func jump():
 	
 	$AnimatedSprite2D.play("walk")
 	state = State.WALK
-	print("walk")
 
 func take_damage(damage, _knockback_dir : Vector2 = Vector2.ZERO):
 	super(damage, Vector2.ZERO)

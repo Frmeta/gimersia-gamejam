@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bijdbe7cvyg74"]
 
-[ext_resource type="Script" uid="uid://cckcsn2confpa" path="res://Scenes/destroy.gd" id="1_h5x6a"]
+[ext_resource type="Script" uid="uid://cckcsn2confpa" path="res://Scripts/destroy.gd" id="1_h5x6a"]
 [ext_resource type="Texture2D" uid="uid://cv15nhnq0gh6e" path="res://Sprites/jumpSmoke.png" id="1_ybcnv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c3fcy"]

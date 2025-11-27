@@ -134,7 +134,8 @@ func jump():
 	#for i in range(2):
 		#await get_tree().physics_frame
 	while not is_on_floor():
-		await get_tree().physics_frame # Await the next physics frame
+		if get_tree() != null:
+			await get_tree().physics_frame # Await the next physics frame
 	
 	
 	AudioManager.play_sfx("res://audio/bossLand.wav")

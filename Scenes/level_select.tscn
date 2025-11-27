@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=4 uid="uid://s2xf6wq3p4s4"]
 
 [ext_resource type="TileSet" uid="uid://cpdfjpv4mifxg" path="res://Tileset/terrain_tileset.tres" id="1_1fiak"]
-[ext_resource type="Script" uid="uid://b4u6u88oeiqqp" path="res://Scenes/level_select.gd" id="1_s6o25"]
+[ext_resource type="Script" uid="uid://b4u6u88oeiqqp" path="res://Scripts/level_select.gd" id="1_s6o25"]
 [ext_resource type="Texture2D" uid="uid://dol7404spwrd6" path="res://Sprites/levelButtonNormal.png" id="2_72w8f"]
 [ext_resource type="Texture2D" uid="uid://c2uh477iran47" path="res://Sprites/levelButtonPressed.png" id="3_s6o25"]
 [ext_resource type="Texture2D" uid="uid://ljuvfh2cmkfm" path="res://Sprites/levelButtonHover.png" id="4_kb5mc"]

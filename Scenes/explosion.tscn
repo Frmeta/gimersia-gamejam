@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cc387rvcfabf0"]
 
-[ext_resource type="Script" uid="uid://cckcsn2confpa" path="res://Scenes/destroy.gd" id="1_a801j"]
+[ext_resource type="Script" uid="uid://cckcsn2confpa" path="res://Scripts/destroy.gd" id="1_a801j"]
 [ext_resource type="Texture2D" uid="uid://bg2rp35awp8dt" path="res://Sprites/explosion.png" id="1_aayv4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a801j"]

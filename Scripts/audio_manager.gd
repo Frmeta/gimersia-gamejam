@@ -2,7 +2,7 @@
 extends Node
 
 ## --- CONFIGURATION ---
-const SFX_PLAYERS_COUNT := 8    # Max number of simultaneous SFX that can play
+const SFX_PLAYERS_COUNT := 20    # Max number of simultaneous SFX that can play
 const MIN_VOLUME_DB := -80.0    # Equivalent to Mute (used for safety and silence)
 
 ## --- PRIVATE MEMBERS (Declared at the top level to avoid scope errors) ---
