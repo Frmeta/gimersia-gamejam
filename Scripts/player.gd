@@ -36,10 +36,14 @@ var gunKnockback: float = 1
 var coyote_jump_duration = 0.2
 var coyote_jump_timer = 0.0
 
+var damage_cooldown_duration = 1.0
+var damage_cooldown_timer = 0.0
+
 var is_prev_on_floor = false
 
 
 @export var jump_smoke : PackedScene
+@export var land_smoke : PackedScene
 
 
 func _ready():
@@ -52,6 +56,7 @@ func _ready():
 func _physics_process(delta: float):
 	
 	coyote_jump_timer -= delta
+	damage_cooldown_timer -= delta
 	
 	# --- Gravity ---
 	if not is_on_floor():
@@ -62,6 +67,7 @@ func _physics_process(delta: float):
 		if not is_prev_on_floor:
 			is_prev_on_floor = true
 			AudioManager.play_sfx("res://audio/playerLand.wav")
+			instantiate(land_smoke, global_position + Vector2.DOWN * 0)
 			
 	
 	if stun_timer < 0:
@@ -126,10 +132,7 @@ func _process(delta):
 		#move_and_slide()
 		
 		# spawn bullet
-		var instantiated_bullet = bullet.instantiate()
-		get_tree().current_scene.add_child.call_deferred(instantiated_bullet)
-		instantiated_bullet.position = gunEndpoint.global_position
-		instantiated_bullet.rotation = diff.angle()
+		instantiate(bullet, gunEndpoint.global_position, diff.angle())
 	
 	if shootTimer > shootInterval/2:
 		gunSpritePivot.position = gunPivotOriginalPos - diff.normalized() * gunKnockback
@@ -150,22 +153,24 @@ func _process(delta):
 		
 
 func jump():
+	coyote_jump_timer = -1
 	AudioManager.play_sfx("res://audio/playerJump.wav")
 	velocity.y = jump_velocity
 	
 	# spawn jump smoke
-	var a = jump_smoke.instantiate()
-	get_tree().current_scene.add_child.call_deferred(a)
-	a.position = global_position + Vector2.DOWN * 12
+	instantiate(jump_smoke, global_position + Vector2.DOWN * 12)
 		
 		
 		
-func take_damage(damage):
-	super(damage)
+func take_damage(damage, knowckback_dir:Vector2 = Vector2.ZERO):
+	if damage_cooldown_timer > 0:
+		return
+	damage_cooldown_timer = damage_cooldown_duration
+	
+	super(damage, knowckback_dir)
 	
 	GameManager.player_health = health
 	healthbar.set_value(health)
-	
 	GameManager.cam_shake_call()
 
 
@@ -175,3 +180,10 @@ func death():
 	GameManager.cam_shake_call()
 	AudioManager.play_sfx("res://audio/playerDied.wav")
 	GameManager.player_died()
+
+func instantiate(scene : PackedScene, positionn : Vector2, rotationn: float = 0):
+	var a = scene.instantiate()
+	get_tree().current_scene.add_child.call_deferred(a)
+	a.position = positionn
+	a.rotation = rotationn
+	return a

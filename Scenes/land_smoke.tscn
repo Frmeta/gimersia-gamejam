@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://ddpabb8vtnife"]
+
+[ext_resource type="Script" uid="uid://cckcsn2confpa" path="res://Scenes/destroy.gd" id="1_41k3d"]
+[ext_resource type="Texture2D" uid="uid://mdui6pu3enyn" path="res://Sprites/playerLandSmoke.png" id="2_xdury"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sowpf"]
+atlas = ExtResource("2_xdury")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwfdb"]
+atlas = ExtResource("2_xdury")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8gjy"]
+atlas = ExtResource("2_xdury")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h17sq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sowpf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vwfdb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8gjy")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="land smoke" type="Node2D"]
+z_index = 3
+script = ExtResource("1_41k3d")
+random_rot = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 5)
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_h17sq")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

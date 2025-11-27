@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmpcp3lbx5rip"]
+
+[ext_resource type="Texture2D" uid="uid://brofogyw8axq2" path="res://Sprites/tutorial.png" id="1_6ouc5"]
+
+[node name="WASD tutorial" type="Sprite2D"]
+texture = ExtResource("1_6ouc5")
+region_enabled = true
+region_rect = Rect2(0, 0, 99.42114, 64)

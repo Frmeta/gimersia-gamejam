@@ -1,16 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://dtix4eshagqh2"]
+[gd_scene load_steps=21 format=3 uid="uid://dtix4eshagqh2"]
 
 [ext_resource type="Texture2D" uid="uid://cp4mp1p47hiw" path="res://Sprites/melee_idle.png" id="1_3dfpd"]
 [ext_resource type="Script" uid="uid://hh0ysol3iu2r" path="res://Scripts/enemy_melee.gd" id="1_s1fu1"]
-[ext_resource type="Shader" uid="uid://hquw3eqnd4mc" path="res://Shaders/solid.gdshader" id="2_b7o5j"]
 [ext_resource type="Texture2D" uid="uid://c7hdob4883bxk" path="res://Sprites/melee_jump.png" id="2_s1fu1"]
 [ext_resource type="PackedScene" uid="uid://cc387rvcfabf0" path="res://Scenes/explosion.tscn" id="3_84rqt"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_84rqt"]
-resource_local_to_scene = true
-shader = ExtResource("2_b7o5j")
-shader_parameter/is_tinted = 0
-shader_parameter/custom_tint = Color(1, 1, 1, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rc88t"]
 radius = 6.0
@@ -119,7 +112,6 @@ collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_s1fu1")
 health = 5
-shader = SubResource("ShaderMaterial_84rqt")
 sprites = [NodePath("AnimatedSprite2D")]
 explosion = ExtResource("3_84rqt")
 
@@ -128,7 +120,6 @@ position = Vector2(1, 10)
 shape = SubResource("CircleShape2D_rc88t")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-material = SubResource("ShaderMaterial_84rqt")
 sprite_frames = SubResource("SpriteFrames_vb0it")
 animation = &"jump"
 frame = 6

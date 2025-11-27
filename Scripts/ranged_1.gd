@@ -1,7 +1,7 @@
 extends Entity
 
 
-const SPEED = 50.0
+@export var SPEED = 50.0
 const DAMAGE = 1
 const KNOCKBACK_POWER = 200
 
@@ -50,6 +50,8 @@ func _physics_process(_delta):
 	# 4. Feed the desired velocity back to the NavigationAgent2D
 	# The agent will process this, apply steering, and avoid other agents/obstacles.
 	navigation_agent.set_velocity(desired_velocity)
+	
+	
 
 # --- NavigationAgent Callback ---
 # This function is called by the NavigationAgent2D with the final, safe velocity.
@@ -86,16 +88,21 @@ func _process(delta):
 				
 				var diff = target_position - global_position
 				instantiated_bullet.rotation = diff.angle()
-
-
-func _on_atk_area_body_entered(body):
-	# attack player when touched
-	if body is Player:
-		body.take_damage(DAMAGE)
-		var dir = (body.global_position - global_position) + Vector2.UP * 10
-		body.take_knockback(dir.normalized() * KNOCKBACK_POWER)
+				
+	
+	var bodies = $atkArea.get_overlapping_bodies()
+	for body in bodies:
+		if body is Player:
+			var dir = (body.global_position - global_position) + Vector2.UP * 10
+			body.take_damage(DAMAGE, dir.normalized() * KNOCKBACK_POWER)
 
 func death():
 	super()
 	AudioManager.play_sfx("res://audio/enemyDied.wav")
 	queue_free()
+
+#func _on_atk_area_body_entered(body):
+	## attack player when touched
+	#if body is Player:
+		#var dir = (body.global_position - global_position) + Vector2.UP * 10
+		#body.take_damage(DAMAGE, dir.normalized() * KNOCKBACK_POWER)

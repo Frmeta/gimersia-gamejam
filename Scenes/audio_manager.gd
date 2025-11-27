@@ -46,7 +46,7 @@ func _ready() -> void:
 	_music_player.name = "MusicPlayer"
 	_music_player.bus = &"Music"
 	add_child(_music_player)
-
+	_music_player.finished.connect(_on_music_finished)
 
 ## ====================================================================
 ##                            SFX POOL LOGIC
@@ -158,3 +158,7 @@ func _get_db_from_linear(linear: float) -> float:
 func _get_linear_from_db(db: float) -> float:
 	# Correctly uses the built-in Godot global function
 	return db_to_linear(db)
+
+func _on_music_finished() -> void:
+	# The stream is still assigned from play_music(), so this restarts it.
+	_music_player.play()

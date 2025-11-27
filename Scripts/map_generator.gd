@@ -8,6 +8,11 @@ class_name MapGenerator
 
 @export var enemy_melee : PackedScene
 @export var enemy_ranged_1 : PackedScene
+@export var awakened_enemy_melee : PackedScene
+@export var awakened_enemy_ranged_1 : PackedScene
+
+@export var boss1_arena : PackedScene
+@export var boss2_arena : PackedScene
 
 @export var area_label : Label
 
@@ -20,20 +25,30 @@ var melee_count = 0
 var ranged_count = 0
 		
 func _ready():
-	AudioManager.play_music("res://audio/bgmLevel.mp3", 0.7)
 	AudioManager.play_sfx("res://audio/areaStart.wav")
 	
-	area_label.text = "AREA " + str(GameManager.level)
+	area_label.text = "AREA " + str(GameManager.current_level)
 	
-	generate_level(GameManager.level)
+	if GameManager.current_level != 1:
+		$"../Tutorial".visible = false
+	
+	if GameManager.current_level == 3:
+		AudioManager.play_music("res://audio/boss1bgm.mp3", 0.7)
+		instantiate(boss1_arena, Vector2.ZERO)
+	elif GameManager.current_level == 6:
+		AudioManager.play_music("res://audio/boss2bgm.mp3", 0.7)
+		instantiate(boss2_arena, Vector2.ZERO)
+	else:
+		AudioManager.play_music("res://audio/bgmLevel.mp3", 0.7)
+		generate_level(GameManager.current_level)
 
 
 func generate_level(level : int):
 	
-	var room_count := 5 + (level-1) * 2
+	var room_count := 6 + int((level-1) * 1.5)
 	const room_size = 14
-	var enemy_per_room_min = clampi(int(level/2-1), 0, 10)
-	var enemy_per_room_max = clampi(level*1, 0, 10)
+	var enemy_per_room_min = clampi(int(float(level % 3 + 1)/2-1), 0, 10)
+	var enemy_per_room_max = clampi(level % 3 + 1, 0, 10)
 	
 	# generate snake-like maze
 	
@@ -123,9 +138,10 @@ func generate_level(level : int):
 			print("furthest room: "+ str(furthest_room))
 			
 			# spawn portal
-			var portal = portal_scene.instantiate()
-			get_tree().current_scene.add_child.call_deferred(portal)
-			portal.global_position = tileMapLayer.map_to_local(starting_point) + Vector2.ONE * room_size*16/2
+			instantiate(portal_scene, tileMapLayer.map_to_local(starting_point) + Vector2.ONE * room_size*16/2)
+			#var portal = portal_scene.instantiate()
+			#get_tree().current_scene.add_child.call_deferred(portal)
+			#portal.global_position = tileMapLayer.map_to_local(starting_point) + Vector2.ONE * room_size*16/2
 			
 		for r in room:
 			cells.append(starting_point + r)
@@ -169,22 +185,25 @@ func generate_level(level : int):
 		ranged_count = 0
 		
 		var instantiate_melee = func():
-			var a = enemy_melee.instantiate()
-			get_tree().current_scene.add_child.call_deferred(a)
-			
 			var idx = randi_range(0, melee_poses.size()-1)
-			a.position = melee_poses[idx]
+			if GameManager.current_level <= 3:
+				instantiate(enemy_melee, melee_poses[idx])
+			else:
+				instantiate(awakened_enemy_melee, melee_poses[idx])
 			melee_poses.remove_at(idx)
 			melee_count += 1
+			
 		
 		var instantiate_ranged = func():
-			var a = enemy_ranged_1.instantiate()
-			get_tree().current_scene.add_child.call_deferred(a)
 			
 			var idx = randi_range(0, ranged_poses.size()-1)
-			a.position = ranged_poses[idx]
+			if GameManager.current_level <= 3:
+				instantiate(enemy_ranged_1, ranged_poses[idx])
+			else:
+				instantiate(awakened_enemy_ranged_1, ranged_poses[idx])
 			ranged_poses.remove_at(idx)
 			ranged_count += 1
+			
 			
 		var enemy_count = randi_range(enemy_per_room_min, enemy_per_room_max)
 		for i in enemy_count:
@@ -224,7 +243,7 @@ func generate_level(level : int):
 	for border_cell in border_cells:
 		fill_room.call(border_cell)
 	
-	if (level-1) % 4 < 2:
+	if (level-1) < 2:
 		tileMapLayer.set_cells_terrain_connect(cells, 0, 0, false)
 	else:
 		tileMapLayer.set_cells_terrain_connect(cells, 0, 1, false)
@@ -233,3 +252,9 @@ func generate_level(level : int):
 	# update navigation area
 	navigation_region.bake_updated_navmesh()
 	
+func instantiate(scene : PackedScene, positionn : Vector2, rotationn: float = 0):
+	var a = scene.instantiate()
+	get_tree().current_scene.add_child.call_deferred(a)
+	a.position = positionn
+	a.rotation = rotationn
+	return a

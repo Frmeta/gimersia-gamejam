@@ -1,17 +1,13 @@
-[gd_scene load_steps=19 format=3 uid="uid://dv562mxeei2te"]
+[gd_scene load_steps=18 format=3 uid="uid://dv562mxeei2te"]
 
 [ext_resource type="Texture2D" uid="uid://lggbh0htpcvc" path="res://Sprites/ranged1/Idle.png" id="1_4mul5"]
 [ext_resource type="Script" uid="uid://bv4ao3gh8kj0n" path="res://Scripts/ranged_1.gd" id="1_4ybe8"]
 [ext_resource type="Texture2D" uid="uid://de88qnmskkike" path="res://Sprites/ranged1/Walk.png" id="2_4ybe8"]
-[ext_resource type="Shader" uid="uid://hquw3eqnd4mc" path="res://Shaders/solid.gdshader" id="2_lp40b"]
 [ext_resource type="PackedScene" uid="uid://cc63h478nhu3g" path="res://Scenes/enemy_bullet.tscn" id="2_p48ev"]
 [ext_resource type="PackedScene" uid="uid://cc387rvcfabf0" path="res://Scenes/explosion.tscn" id="4_ecuqf"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_p48ev"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_js0v0"]
 resource_local_to_scene = true
-shader = ExtResource("2_lp40b")
-shader_parameter/is_tinted = 0
-shader_parameter/custom_tint = Color(1, 1, 1, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lp40b"]
 atlas = ExtResource("1_4mul5")
@@ -86,19 +82,18 @@ animations = [{
 radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ybe8"]
-radius = 12.0
+radius = 14.0
 
 [node name="Ranged1" type="CharacterBody2D" node_paths=PackedStringArray("sprites")]
 collision_layer = 4
 script = ExtResource("1_4ybe8")
 bullet = ExtResource("2_p48ev")
 health = 3
-shader = SubResource("ShaderMaterial_p48ev")
 sprites = [NodePath("AnimatedSprite2D")]
 explosion = ExtResource("4_ecuqf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-material = SubResource("ShaderMaterial_p48ev")
+material = SubResource("ShaderMaterial_js0v0")
 sprite_frames = SubResource("SpriteFrames_xxjvd")
 animation = &"walk"
 frame = 2

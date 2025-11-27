@@ -1,5 +1,6 @@
-[gd_scene load_steps=23 format=3 uid="uid://c6uk8xcw0armk"]
+[gd_scene load_steps=34 format=3 uid="uid://c6uk8xcw0armk"]
 
+[ext_resource type="Script" uid="uid://dneksk5su1wab" path="res://Scenes/pause.gd" id="1_luodc"]
 [ext_resource type="PackedScene" uid="uid://d2bppxnj8p83u" path="res://Scenes/player.tscn" id="2_cpqui"]
 [ext_resource type="PackedScene" uid="uid://dtix4eshagqh2" path="res://Scenes/enemy_melee.tscn" id="3_abuyh"]
 [ext_resource type="PackedScene" uid="uid://dwp4g2v6vji76" path="res://Scenes/portal.tscn" id="3_ffu6o"]
@@ -9,36 +10,43 @@
 [ext_resource type="Texture2D" uid="uid://34r7gj8dbniq" path="res://Sprites/player icon.png" id="6_oa7b0"]
 [ext_resource type="Script" uid="uid://dl7hk5fmhldq1" path="res://Scripts/health_bar.gd" id="7_btn2y"]
 [ext_resource type="Texture2D" uid="uid://cgd42oj1vhdnr" path="res://Sprites/BlueBar/BlueBar4.png" id="7_fhyaa"]
+[ext_resource type="PackedScene" uid="uid://buw75mm2qiobd" path="res://Scenes/boss1_arena.tscn" id="7_gf56v"]
+[ext_resource type="PackedScene" uid="uid://bp4tgf6fcvuwv" path="res://Scenes/boss2_arena.tscn" id="8_6y3s5"]
 [ext_resource type="Texture2D" uid="uid://3eh7odc1w4j4" path="res://Sprites/BlueBar/BlueBar0.png" id="8_glela"]
-[ext_resource type="Shader" uid="uid://hquw3eqnd4mc" path="res://Shaders/solid.gdshader" id="8_vofx3"]
-[ext_resource type="Texture2D" uid="uid://baf1cbqky6adj" path="res://Sprites/border.png" id="9_00k4y"]
+[ext_resource type="Texture2D" uid="uid://b1mrl0h7mvpm0" path="res://Sprites/border v2.png" id="9_3a44l"]
 [ext_resource type="Texture2D" uid="uid://bnjdbjgnoup38" path="res://Sprites/BlueBar/BlueBar1.png" id="9_ffu6o"]
 [ext_resource type="Texture2D" uid="uid://dyuxlyi6qymsn" path="res://Sprites/BlueBar/BlueBar2.png" id="10_kl8tt"]
 [ext_resource type="Texture2D" uid="uid://c2myy53xtbljl" path="res://Sprites/BlueBar/BlueBar3.png" id="11_5txge"]
 [ext_resource type="PackedScene" uid="uid://dv562mxeei2te" path="res://Scenes/enemy_ranged_1.tscn" id="15_kl8tt"]
 [ext_resource type="FontFile" uid="uid://omrspxr7relv" path="res://Silver.ttf" id="16_00k4y"]
-[ext_resource type="PackedScene" uid="uid://cc387rvcfabf0" path="res://Scenes/explosion.tscn" id="17_ad76w"]
 [ext_resource type="Script" uid="uid://i1w4dyvrvjj2" path="res://Scenes/camera_2d.gd" id="17_nngtn"]
 [ext_resource type="Script" uid="uid://dqx10f8oppa3p" path="res://Scenes/cam_shake.gd" id="19_3a44l"]
+[ext_resource type="PackedScene" uid="uid://dmpcp3lbx5rip" path="res://Scenes/wasd_tutorial.tscn" id="20_3a44l"]
+[ext_resource type="PackedScene" uid="uid://bx4sv4522xje8" path="res://Scenes/lmb_tutorial.tscn" id="21_0cmrb"]
+[ext_resource type="PackedScene" uid="uid://d2fhe24pn6nty" path="res://Scenes/awakened_enemy_ranged_1.tscn" id="21_pnhnk"]
+[ext_resource type="Texture2D" uid="uid://cw6ufjesvid5b" path="res://Sprites/home.png" id="22_1cgv8"]
+[ext_resource type="PackedScene" uid="uid://bbsl82x3cflaa" path="res://Scenes/awakened_enemy_melee.tscn" id="22_pnhnk"]
+[ext_resource type="Texture2D" uid="uid://q4kblhpexker" path="res://Sprites/pause.png" id="23_hcs0j"]
+[ext_resource type="Texture2D" uid="uid://dy8d31vlqpaw1" path="res://Sprites/homeHovered.png" id="23_t205d"]
+[ext_resource type="Texture2D" uid="uid://db4y2fwfotlhl" path="res://Sprites/resume.png" id="24_t205d"]
+[ext_resource type="Texture2D" uid="uid://b82s78tli1jsc" path="res://Sprites/resumeHovered.png" id="26_idpk0"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_kl8tt"]
-vertices = PackedVector2Array(24044.672, 12952.102, -15969.703, 13648.883, 165, 21, 17475.25, -14219.203, 139, 21, 117, 21, 69, 37, 165, -5, -10843.844, -8843.703, 139, -5, 117, -5, 59, -5, 43, 11, 59, 11, 43, 37, 69, 21)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 2, 1), PackedInt32Array(5, 4, 1, 6), PackedInt32Array(3, 2, 7), PackedInt32Array(8, 3, 7, 9), PackedInt32Array(9, 4, 5, 10), PackedInt32Array(8, 9, 10), PackedInt32Array(8, 10, 11), PackedInt32Array(1, 8, 11, 12), PackedInt32Array(11, 13, 12), PackedInt32Array(1, 12, 14), PackedInt32Array(6, 15, 5), PackedInt32Array(1, 14, 6)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-10848, -8848, -15976, 13654, 24051, 12957, 17479, -14225)])
 source_geometry_mode = 1
 source_geometry_group_name = &"environment"
-agent_radius = 5.0
+agent_radius = 9.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3a44l"]
-resource_local_to_scene = true
-shader = ExtResource("8_vofx3")
-shader_parameter/is_tinted = 0
-shader_parameter/custom_tint = Color(1, 1, 1, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gf56v"]
+bg_color = Color(0.17, 0.051000003, 0.120416634, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6y3s5"]
+bg_color = Color(0.6, 0, 0, 1)
 
 [node name="Level" type="Node2D"]
 
 [node name="ColorRect" type="ColorRect" parent="."]
-z_index = -2
+z_index = -3
 offset_left = -1000053.0
 offset_top = -1000182.0
 offset_right = 8999946.0
@@ -53,6 +61,10 @@ portal_scene = ExtResource("3_ffu6o")
 navigation_region = NodePath("../NavigationRegion2D")
 enemy_melee = ExtResource("3_abuyh")
 enemy_ranged_1 = ExtResource("15_kl8tt")
+awakened_enemy_melee = ExtResource("22_pnhnk")
+awakened_enemy_ranged_1 = ExtResource("21_pnhnk")
+boss1_arena = ExtResource("7_gf56v")
+boss2_arena = ExtResource("8_6y3s5")
 area_label = NodePath("../CanvasLayer/Area 1")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
@@ -60,20 +72,18 @@ navigation_polygon = SubResource("NavigationPolygon_kl8tt")
 script = ExtResource("4_5txge")
 
 [node name="Environment" type="TileMapLayer" parent="NavigationRegion2D" groups=["environment"]]
-tile_map_data = PackedByteArray(0, 0, 3, 0, 1, 0, 0, 0, 3, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0)
 tile_set = ExtResource("3_oum08")
 
 [node name="Player" parent="." node_paths=PackedStringArray("healthbar") instance=ExtResource("2_cpqui")]
 position = Vector2(105, 84)
 healthbar = NodePath("../CanvasLayer/HealthBar")
-shader = SubResource("ShaderMaterial_3a44l")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
 offset_right = 256.0
 offset_bottom = 256.0
-texture = ExtResource("9_00k4y")
+texture = ExtResource("9_3a44l")
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 visible = false
@@ -95,20 +105,20 @@ grow_vertical = 0
 color = Color(0, 0, 0, 1)
 
 [node name="HealthBar" type="TextureRect" parent="CanvasLayer"]
-offset_left = 29.0
-offset_top = 13.0
-offset_right = 62.0
-offset_bottom = 29.0
+offset_left = 37.0
+offset_top = 1.0
+offset_right = 70.0
+offset_bottom = 17.0
 scale = Vector2(2, 2)
 texture = ExtResource("7_fhyaa")
 script = ExtResource("7_btn2y")
 textures = Array[Texture]([ExtResource("8_glela"), ExtResource("9_ffu6o"), ExtResource("10_kl8tt"), ExtResource("11_5txge"), ExtResource("7_fhyaa")])
 
 [node name="PlayerIcon" type="TextureRect" parent="CanvasLayer"]
-offset_left = 7.0
-offset_top = 9.0
-offset_right = 47.0
-offset_bottom = 49.0
+offset_left = 15.0
+offset_top = -3.0
+offset_right = 55.0
+offset_bottom = 37.0
 texture = ExtResource("6_oa7b0")
 flip_h = true
 
@@ -116,20 +126,96 @@ flip_h = true
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -89.0
-offset_top = 27.0
-offset_right = -9.0
-offset_bottom = 69.0
+offset_left = -97.0
+offset_top = 11.0
+offset_right = -17.0
+offset_bottom = 53.0
 grow_horizontal = 0
 theme_override_fonts/font = ExtResource("16_00k4y")
 theme_override_font_sizes/font_size = 20
 text = "AREA 2"
 horizontal_alignment = 2
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+[node name="BossHealth" type="ProgressBar" parent="CanvasLayer" groups=["boss_healthbar"]]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -76.0
+offset_top = 18.0
+offset_right = 76.0
+offset_bottom = 22.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_gf56v")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6y3s5")
+value = 100.0
+show_percentage = false
 
-[node name="explosion" parent="." instance=ExtResource("17_ad76w")]
-position = Vector2(95, -15)
+[node name="Pause" type="ColorRect" parent="CanvasLayer"]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.21568628)
+script = ExtResource("1_luodc")
+
+[node name="Home" type="TextureButton" parent="CanvasLayer/Pause"]
+process_mode = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -20.0
+offset_right = -40.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("22_1cgv8")
+texture_hover = ExtResource("23_t205d")
+stretch_mode = 0
+
+[node name="Pause" type="TextureButton" parent="CanvasLayer/Pause"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.999985
+offset_top = -21.999992
+offset_right = 13.000015
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.3, 1.3)
+texture_normal = ExtResource("23_hcs0j")
+stretch_mode = 0
+
+[node name="Resume" type="TextureButton" parent="CanvasLayer/Pause"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 44.0
+offset_top = -11.0
+offset_right = 74.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("24_t205d")
+texture_hover = ExtResource("26_idpk0")
+stretch_mode = 0
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
 
 [node name="Cam Shake" type="Node2D" parent="."]
 script = ExtResource("19_3a44l")
@@ -138,4 +224,16 @@ script = ExtResource("19_3a44l")
 script = ExtResource("17_nngtn")
 target_node = NodePath("../../Player")
 
+[node name="Tutorial" type="Node2D" parent="."]
+position = Vector2(104, 98)
+scale = Vector2(1.0118394, 1.0118394)
+
+[node name="WASD tutorial" parent="Tutorial" instance=ExtResource("20_3a44l")]
+position = Vector2(-60, -2)
+
+[node name="LMB Tutorial" parent="Tutorial" instance=ExtResource("21_0cmrb")]
+position = Vector2(59, -6)
+
 [connection signal="changed" from="NavigationRegion2D/Environment" to="NavigationRegion2D" method="_on_tile_map_layer_changed"]
+[connection signal="pressed" from="CanvasLayer/Pause/Home" to="CanvasLayer/Pause" method="_on_home_pressed"]
+[connection signal="pressed" from="CanvasLayer/Pause/Resume" to="CanvasLayer/Pause" method="_on_resume_pressed"]

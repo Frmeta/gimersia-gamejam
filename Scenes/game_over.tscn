@@ -7,9 +7,9 @@
 font = ExtResource("3_14u15")
 font_size = 38
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ce3w2"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8fo1c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_14u15"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ek8ke"]
 
@@ -19,55 +19,52 @@ font_size = 38
 script = ExtResource("1_ek8ke")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -79.0
-offset_top = -20.0
-offset_right = 445.0
-offset_bottom = 355.0
+offset_right = 524.0
+offset_bottom = 375.0
 color = Color(0.10970644, 0.016301434, 0, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Label" type="Label" parent="CanvasLayer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 35.0
-offset_bottom = 77.0
+offset_bottom = 96.0
 grow_horizontal = 2
+alignment = 1
+
+[node name="Control" type="Control" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Gameover" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
 text = "GAME OVER"
 label_settings = SubResource("LabelSettings_1ehe0")
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Score" type="Label" parent="CanvasLayer"]
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = 70.0
-offset_bottom = 112.0
-grow_horizontal = 2
-text = "Area Reached: 10"
-label_settings = SubResource("LabelSettings_1ehe0")
-horizontal_alignment = 1
+[node name="Control2" type="Control" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
 
-[node name="PlayButton" type="Button" parent="CanvasLayer"]
-offset_left = 91.0
-offset_top = 158.0
-offset_right = 180.0
-offset_bottom = 201.0
-theme_override_styles/normal = SubResource("StyleBoxEmpty_ce3w2")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_8fo1c")
+[node name="PlayButton" type="Button" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8fo1c")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_14u15")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_ek8ke")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_eoghk")
 
-[node name="Retry" type="Label" parent="CanvasLayer/PlayButton"]
+[node name="Retry" type="Label" parent="CanvasLayer/VBoxContainer/PlayButton"]
+z_index = -1
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 15
 anchor_right = 1.0
-offset_left = -8.0
-offset_top = 1.0
-offset_right = -3.0
-offset_bottom = 43.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
 text = "Retry?"
 label_settings = SubResource("LabelSettings_1ehe0")
 horizontal_alignment = 1
 
-[connection signal="pressed" from="CanvasLayer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/PlayButton" to="." method="_on_continue_button_pressed"]

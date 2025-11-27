@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdef1quy1uvum"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jshn6"]
+bg_color = Color(0.17, 0.051000003, 0.120416634, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tk5ui"]
+bg_color = Color(0.6, 0, 0, 1)
+
+[node name="BossHealth" type="CanvasLayer"]
+
+[node name="BossHealth" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_right = 200.0
+offset_bottom = 27.0
+theme_override_styles/background = SubResource("StyleBoxFlat_jshn6")
+theme_override_styles/fill = SubResource("StyleBoxFlat_tk5ui")
+value = 50.0
+show_percentage = false

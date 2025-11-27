@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsyjmgrxle6hc"]
+
+[ext_resource type="PackedScene" uid="uid://d2bppxnj8p83u" path="res://Scenes/player.tscn" id="1_rsrnj"]
+[ext_resource type="PackedScene" uid="uid://buw75mm2qiobd" path="res://Scenes/boss1_arena.tscn" id="2_rsrnj"]
+
+[node name="tes boss" type="Node2D"]
+
+[node name="Player" parent="." node_paths=PackedStringArray("healthbar") instance=ExtResource("1_rsrnj")]
+position = Vector2(105, 84)
+healthbar = NodePath("")
+
+[node name="TileMapLayer" parent="." instance=ExtResource("2_rsrnj")]

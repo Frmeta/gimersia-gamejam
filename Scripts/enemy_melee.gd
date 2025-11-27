@@ -4,7 +4,7 @@ enum State {
 	WALK, PREPARE_TO_JUMP, JUMP
 }
 
-const SPEED = 30.0
+@export var SPEED = 30.0
 const DAMAGE = 1
 const KNOCKBACK_POWER = 200
 
@@ -18,8 +18,10 @@ var checkInterval = 0.2
 var checkTimer = 0
 
 var jump_power = Vector2(200, -250)
-var jump_interval = 5.0
-var jump_timer = 8.0
+@export var jump_interval = 5.0
+@export var jump_timer = 5.0
+
+@export var ancang_ancang_delay = 1.0
 
 var state = State.WALK
 
@@ -50,7 +52,7 @@ func _physics_process(delta):
 		jump_timer = jump_interval
 		state = State.PREPARE_TO_JUMP
 		
-		await get_tree().create_timer(1.0).timeout
+		await get_tree().create_timer(ancang_ancang_delay).timeout
 		
 		AudioManager.play_sfx("res://audio/enemyMeleeJump.wav")
 		state = State.JUMP
@@ -85,14 +87,20 @@ func _physics_process(delta):
 		pass
 		
 	move_and_slide()
+	
+	
+	var bodies = $atkArea.get_overlapping_bodies()
+	for body in bodies:
+		if body is Player:
+			var dir = (body.global_position - global_position) + Vector2.UP * 10
+			body.take_damage(DAMAGE, dir.normalized() * KNOCKBACK_POWER)
 
 func death():
 	super()
 	AudioManager.play_sfx("res://audio/enemyDied.wav")
-
-func _on_atk_area_body_entered(body):
-	# attack player when touched
-	if body is Player:
-		body.take_damage(DAMAGE)
-		var dir = (body.global_position - global_position) + Vector2.UP * 10
-		body.take_knockback(dir.normalized() * KNOCKBACK_POWER)
+#
+#func _on_atk_area_body_entered(body):
+	## attack player when touched
+	#if body is Player:
+		#var dir = (body.global_position - global_position) + Vector2.UP * 10
+		#body.take_damage(DAMAGE, dir.normalized() * KNOCKBACK_POWER)
