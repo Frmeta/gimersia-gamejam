@@ -75,7 +75,7 @@ func _physics_process(delta):
 		#State.JUMP:
 			#$AnimatedSprite2D.play("jump")
 	
-	if state == State.WALK or state == State.ATK:
+	if state == State.DASH or state == State.ATK:
 		# atk player
 		var bodiess = $AnimatedSprite2D/atkSensor.get_overlapping_bodies()
 		for body in bodiess:
@@ -115,10 +115,6 @@ func _physics_process(delta):
 		
 	move_and_slide()
 	
-	
-
-		
-
 func dash():
 	state = State.DASH
 	GameManager.cam_shake_call()
@@ -155,7 +151,7 @@ func jump():
 	if get_tree() != null:
 		await get_tree().physics_frame
 	while not is_on_floor():
-		if get_tree() != null:
+		if is_inside_tree() and get_tree() != null:
 			await get_tree().physics_frame # Await the next physics frame
 	
 	
