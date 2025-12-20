@@ -16,7 +16,11 @@ func _process(_delta):
 		farthest_level = 6
 		print("cheat")
 		save_level()
-	pass
+		
+	if Input.is_key_pressed(KEY_O) and Input.is_key_pressed(KEY_R) and Input.is_key_pressed(KEY_E):
+		#get_tree().reload_current_scene()
+		print("clean data")
+		clean_data()
 	
 	
 
@@ -83,4 +87,14 @@ func load_level():
 	if file:
 		loaded_data = file.get_var()
 		file.close()
-	farthest_level = loaded_data["level"]
+	farthest_level = loaded_data.get("level", 1)
+
+func clean_data():
+	if FileAccess.file_exists(save_path):
+		var error = DirAccess.remove_absolute(save_path)
+		if error == OK:
+			print("Save file deleted successfully.")
+		else:
+			print("An error occurred when trying to delete the file: ", error)
+	else:
+		print("Save file does not exist.")

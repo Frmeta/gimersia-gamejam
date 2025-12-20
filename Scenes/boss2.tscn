@@ -242,7 +242,7 @@ size = Vector2(22.93, 32.04)
 collision_layer = 4
 script = ExtResource("1_tvscf")
 bullet = ExtResource("2_pjcoq")
-health = 120
+health = 100
 sprites = [NodePath("AnimatedSprite2D")]
 explosion = ExtResource("3_78f74")
 

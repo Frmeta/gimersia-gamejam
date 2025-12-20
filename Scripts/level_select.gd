@@ -5,7 +5,7 @@ extends Node2D
 func _ready():
 	for i in range(len(level_buttons)):
 		level_buttons[i].connect("pressed", func () : level_button_clicked(i+1))
-		if GameManager.farthest_level < i+1:
+		if GameManager.farthest_level <= i:
 			level_buttons[i].disabled = true
 			level_buttons[i].modulate = Color(0.42, 0.42, 0.42, 1.0)
 			
